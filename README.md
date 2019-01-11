@@ -8,6 +8,6 @@ Over time additional sections, section placeholders, snippets, and links were ad
 
 The more complex or longer sections will be separated into smaller more detailed write-ups; however, we decided to drop the short and generic info for public use now.  Pasties data will also eventually be formatted and added to the wiki. 
 
-# Additional Links
+## Additional Links
 
 Also check out [HostEnum](https://github.com/threatexpress/red-team-scripts)
