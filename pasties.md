@@ -694,7 +694,7 @@ Dump MSSQL Password Hashes
 ### NTDSUTIL
 Built-in utility to create backup copy of the AD database
 ```	
-	ntdsutil "ac i ntds" "ifm" create full c:\temp" q q
+	ntdsutil "ac i ntds" "ifm" "create full c:\temp" q q
 ```
 
 ### Applocker
