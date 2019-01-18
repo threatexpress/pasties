@@ -62,9 +62,6 @@
 	- [Java](#java)
 	- [Java Deserialization](#java-deserialization)
 - [Misc](#misc)
-- [Credits](#credits)
-- [Disclaimer](#disclaimer)
-- [Red Team Tips by @vysecurity on Twitter](#red-team-tips-by-vysecurity-on-twitter)
 
 <!-- /MarkdownTOC -->
 
