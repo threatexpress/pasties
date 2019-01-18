@@ -12,8 +12,61 @@
 'Pasties' started as a small file used to collect random bits of information and scripts that were common to many individual tests. Most of this is just a consolidation of publicly available information and things that Joe Vest (@joevest), Andrew Chiles (@andrewchiles), Derek Rushing, or myself (@minis_io) have found useful. Over time additional sections, section placeholders, snippets, and links were added for "quick reference" and has grown to quite a sizable markdown file. The more complex or longer sections will be separated into smaller more detailed write-ups; however, we decided to drop the short and generic info for public use now.  Pasties data will also eventually be formatted and added to the wiki. 
 
 
-[TOC]
 
+<!-- MarkdownTOC depth=2 autolink=true -->
+
+- [Penetration Testing Methodology References](#penetration-testing-methodology-references)
+- [OSINT](#osint)
+	- [FOCA](#foca)
+	- [Maltego](#maltego)
+	- [ReconNG](#reconng)
+	- [Metagoofil](#metagoofil)
+	- [censys.io](#censysio)
+- [Network Scanning](#network-scanning)
+	- [dsnrecon](#dsnrecon)
+	- [TheHarvester](#theharvester)
+	- [Nmap](#nmap)
+	- [Web](#web)
+- [Windows](#windows)
+	- [Built-in Commands](#built-in-commands)
+	- [Windows Lateral Movement](#windows-lateral-movement)
+	- [Windows Persistence Methods](#windows-persistence-methods)
+	- [Application Whitelisting Bypass Techniques](#application-whitelisting-bypass-techniques)
+	- [Certutil](#certutil)
+	- [Active Directory Enumeration](#active-directory-enumeration)
+	- [Powershell](#powershell)
+	- [Mimikatz](#mimikatz)
+	- [Kerberoast](#kerberoast)
+	- [Domain Admin Privesc Methods](#domain-admin-privesc-methods)
+- [Command and Control](#command-and-control)
+	- [Domain Fronting](#domain-fronting)
+	- [Cobalt Strike](#cobalt-strike)
+	- [EMPIRE](#empire)
+- [Linux](#linux)
+	- [BASH](#bash)
+	- [Linux Persistence Ideas](#linux-persistence-ideas)
+	- [rpcclient](#rpcclient)
+	- [enum4linux](#enum4linux)
+	- [iptables](#iptables)
+	- [ldapsearch](#ldapsearch)
+	- [NFS](#nfs)
+	- [Shells](#shells)
+	- [SSH Tunnels](#ssh-tunnels)
+	- [Impacket](#impacket)
+	- [Brute Force Techniques](#brute-force-techniques)
+- [Web Exploitation](#web-exploitation)
+	- [SQL](#sql)
+	- [XSS](#xss)
+	- [Server-side Javascript Injection via Node or ElementJS](#server-side-javascript-injection-via-node-or-elementjs)
+	- [Cold Fusion](#cold-fusion)
+	- [Java](#java)
+	- [Java Deserialization](#java-deserialization)
+- [Misc](#misc)
+- [Credits](#credits)
+- [Disclaimer](#disclaimer)
+- [Red Team Tips by @vysecurity on Twitter](#red-team-tips-by-vysecurity-on-twitter)
+
+<!-- /MarkdownTOC -->
 
 # Penetration Testing Methodology References
 
