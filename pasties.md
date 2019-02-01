@@ -12,7 +12,6 @@
 'Pasties' started as a small file used to collect random bits of information and scripts that were common to many individual tests. Most of this is just a consolidation of publicly available information and things that Joe Vest (@joevest), Andrew Chiles (@andrewchiles), Derek Rushing, or myself (@minis_io) have found useful. Over time additional sections, section placeholders, snippets, and links were added for "quick reference" and has grown to quite a sizable markdown file. The more complex or longer sections will be separated into smaller more detailed write-ups; however, we decided to drop the short and generic info for public use now.  Pasties data will also eventually be formatted and added to the wiki. 
 
 
-
 <!-- MarkdownTOC depth=2 autolink=true -->
 
 - [Penetration Testing Methodology References](#penetration-testing-methodology-references)
@@ -461,6 +460,28 @@ Get Roles
     netdom query /D:domain FSMO
 ```
 
+List trusts
+```
+nltest /domain_trust
+```
+
+or
+
+```
+nltest /trusted_domains
+```
+
+or
+
+```
+get-adtrust -Filter *
+```
+
+Get DC for Trusted Domains
+```
+$t=Get-AdTrust -Filter * |Select -expandproperty Name;foreach($line in $t){nltest /dclist:$line}
+```
+
 View the list of domain users:
 ```
 	C:\> wmic useraccount where (domain='%USERDOMAIN%') get Name > userlist.txt
@@ -633,6 +654,7 @@ Lock a file for testing
 ```
     (>&2 pause) >> file.txt
 ```
+
 ### DSQUERY
 
 Get attributes for all Windows hosts in the Domain
@@ -1314,7 +1336,6 @@ Get unquoted service paths
 ```
 	gwmi win32_service |Select pathname | Where {($_.pathname -ne $null)} | Where {-not $_.pathname.StartsWith("`"")} | Where {($_.pathname.Substring(0, $_.pathname.IndexOf(".") +4)) -match ".* .*"}
 ```
-
 
 ### Find-Files (custom)
 ```
@@ -2696,6 +2717,12 @@ There are still relatively few dec ent Web Socket testing tools and most aren't 
 
 Things that don't seem to fit elsewhere!
 
+
+### Decompiling .NET Binaries
+
+http://ilspy.net/
+
+
 ### Canary Tokens
 
 Tokens consist of a unique identifier (which can be embedded in either HTTP URLs or in hostnames.) Whenever that URL is requested, or the hostname is resolved, we send a notification email to the address tied to the token. You can get one in seconds, using just your browser.
@@ -2778,9 +2805,32 @@ Convert AIX passwd file to john format
 ```
 	cat $1|egrep ":|password" | sed 's/password = //g' | tr -d "\t " |sed ':a;N;$!ba;s/:\n/:/g'
 ```
-### Decompiling .NET Binaries
 
-http://ilspy.net/
+### Create NTLM Hash from Mac CLI
+```
+	echo -n password | iconv -t UTF-16LE | openssl md4
+```
+
+### Hash Cracking Examples
+ophcrack using tables
+```
+	ophcrack -d /Volumes/data/table_vista_free/ -t /Volumes/data/table_vista_free -f ~/Desktop/ntlm.hashdump
+```
+
+Crack mscachev2 format with Hashcat (extremely slow)
+```
+	./hashcat -m 2100 -a 0 mscachev2.dump ./wordlists/* -r rules/dive.rule
+```
+
+Hashcat SPNs with wordlist
+```
+	./hashcat -m 13100 -a 0 spns.dump ./wordlists/* -r rules/dive.rule
+```
+
+JTR SPNs with wordlist
+```
+	./john --format=krb5tgs spns.dump --wordlist=
+```
 
 ### Magic Hashes
 
