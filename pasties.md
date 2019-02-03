@@ -561,6 +561,22 @@ WMI call remote system
     wmic /node:remote_computer process call create "netstat.exe -ano > C:\output.txt"
 ```
 
+WMI get startup items
+```
+    wmic startup get Caption, Command, User
+```
+
+or
+
+```
+    wmic startup list full
+```
+
+WMI get enabled account password expiration
+```
+    wmic useraccount where "disabled=0 AND localaccount=1" get name, passwordexpires /value
+```
+
 View established connections of current machine:
 ```
 	netstat -a -n -p tcp | find "ESTAB"
@@ -643,6 +659,16 @@ Mount a .win image remotely on target machine
 	Dism /Mount-Wim /WimFile:z:\win7\Acme_Win7.wim /index:2 /MountDir:C:\windows\temp\offline
 
 	Dism /UnMount-Wim /MountDir:C:\windows\temp\offline /discard
+```
+
+For loop example
+```
+    for /D %f in ("C:\Users\username\*") do dir %f
+```
+
+For loop, count lines
+```
+    for /R "C:\users\username\desktop" %f in (*) do find /c /v "" %f
 ```
 
 Check if file is locked
@@ -769,14 +795,14 @@ Linux to Windows Remoting
 
   - In windows run
 ```
-winrm set winrm/config/Service/Auth @{Basic="true"}
-winrm set winrm/config/Service @{AllowUnencrypted="true"}
+    winrm set winrm/config/Service/Auth @{Basic="true"}
+    winrm set winrm/config/Service @{AllowUnencrypted="true"}
 ```
 
   - In linux run
 ```
-$cred = Get-Credential
-Enter-PSSession -ComputerName 'winserver1' -Credential $cred -Authentication Basic
+    $cred = Get-Credential
+    Enter-PSSession -ComputerName 'winserver1' -Credential $cred -Authentication Basic
 ```
 
 PowerShell Remoting over SSH
@@ -2135,7 +2161,7 @@ export PS1="\n\n\[\$(if [[ \$? == 0 ]]; then echo \"\[$GREEN\]✓\"; else echo \
 
 Create NTLM Hash from Mac CLI
 ```
-echo -n password | iconv -t UTF-16LE | openssl md4
+    echo -n password | iconv -t UTF-16LE | openssl md4
 ```
 
 ## Linux Persistence Ideas
