@@ -2416,7 +2416,7 @@ Send data over ssh to port 80 on target through jumphost
 ```
 
 
-Connect to server1 (DMZ), Fwd localhost port 9222 to internal 10.10.15.3:22
+Fwd localhost port 9222 to internal 10.10.15.3:22 through DMZ server1
 ```
     ssh -p 2222 -i ~/.ssh/keyfile -N -L localhost:9222:10.10.15.3:22 james@server1
 ```
