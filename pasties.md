@@ -2415,6 +2415,18 @@ Send data over ssh to port 80 on target through jumphost
 	ssh -A -t -p22 -L 8800:localhost:8800 james@123.001.123.321 -t ssh -L 8800:localhost:80 james@124.123.122
 ```
 
+
+Connect to server1 (DMZ), Fwd localhost port 9222 to internal 10.10.15.3:22
+```
+    ssh -p 2222 -i ~/.ssh/keyfile -N -L localhost:9222:10.10.15.3:22 james@server1
+```
+
+Using above example, connect to internal server 10.10.15.3
+```
+    ssh -i ~/.ssh/keyfile -p 9222 james@localhost
+```
+
+
 Start ssh using existing connections
 ```
     nano ~/.ssh/config
