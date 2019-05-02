@@ -2422,6 +2422,17 @@ Start ssh using existing connections
     ControlPath ~/.ssh/control:%h:%p:%r
 ```
 
+Execute commands over ssh
+```
+    ssh -p22 james@server 'bash -s' < commands.txt
+```
+
+Write list of cmds to disk then execute via ssh
+```
+cat commands.txt |ssh -p22 james@server 'cat >> /home/james/cmds; /bin/bash /home/james/cmds'
+```
+
+
 ## Impacket
 
 Source: https://github.com/CoreSecurity/impacket/releases/tag/impacket_0_9_15
