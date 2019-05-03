@@ -2429,11 +2429,18 @@ Using above example, connect to internal server 10.10.15.3
 ```
 
 
-Start ssh using existing connections
+Start ssh using existing connections, send keepalive packets
 ```
     nano ~/.ssh/config
     ControlMaster auto
     ControlPath ~/.ssh/control:%h:%p:%r
+
+    Host localhost
+        StrictHostKeyChecking no
+        ServerAliveInterval 60
+        ServerAliveCountMax  10
+        TCPKeepAlive yes
+
 ```
 
 Execute commands over ssh
