@@ -2177,6 +2177,8 @@ Create NTLM Hash from Mac CLI
 	Add SUID to world-writeable script (chmod u+s <file>)
 	Add init script (reboot persistence)
 ```
+https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/linux-index.md
+
 
 ## rpcclient
 
