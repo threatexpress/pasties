@@ -2172,10 +2172,20 @@ Create NTLM Hash from Mac CLI
 
 ## Linux Persistence Ideas
 ```
-	Cron
 	Add SSH keys
 	Add SUID to world-writeable script (chmod u+s <file>)
 	Add init script (reboot persistence)
+	autostart
+	bash profile/rc
+	binary replacement
+	Cron
+	LD_PRELOAD
+	LKM
+	pam module
+	shared library hijacking
+	trap
+	user addition
+	web shell
 ```
 https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/linux-index.md
 
