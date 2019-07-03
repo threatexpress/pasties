@@ -2253,6 +2253,13 @@ Obtain LAPS passwords for domain computers using the linux based ldapsearch tool
 	ms-MCS-AdmPwd - Only show me the ms-MCS-AdmPwd object (which by default includes the object name and DN so you will still know what host it belongs to)
 ```
 
+Get FQDN
+```
+    hostname --fqdn
+    or
+    hostname -f
+```
+
 ## NFS
 
 List NFS Mounts on remote host
