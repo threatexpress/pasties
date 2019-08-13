@@ -2206,11 +2206,6 @@ function my_ip {
 
 export PS1="\n\n\[\$(if [[ \$? == 0 ]]; then echo \"\[$GREEN\]✓\"; else echo \"\[$RED\]✕\"; fi)[\033[33m\]\D{%Y%m%d_%H%M%S}\[\033[m\] \[\033[36m\]\u@\h__`ipconfig getifaddr en0`__`ipconfig getifaddr en8`\[\033[m\]] \[\033[1;31m\]\n[\w]\[\033[m\] \n \$ "
 
-
-export PS1="\n\n\[\$(if [[ \$? == 0 ]]; then echo \"\[$GREEN\]✓\"; else echo \"\[$RED\]✕\"; fi)[\033[33m\]\D{%Y%m%d_%H%M%S}\[\033[m\] \[\033[36m\]\u@\h__$(my_ip)\[\033[m\]] \[\033[1;31m\]\n[\w]\[\033[m\] \n \$ "
-
-
-export PS1="\n\[$WHITE\]╭ [\$(if [[ \$? == 0 ]]; then echo \"\[$GREEN\]✓\"; else echo \"\[$RED\]✕\"; fi) \[$WHITE\]\[$YELLOW\]\D{%Y%m%d_%H%M%S_%zUC} \[$WHITE\]\u@\h \[${CYAN}\]$(my_ip)\[$BLUE\]: \[$WHITE\]]\n├ [\[$GREEN\]\w\[$WHITE\]]\n\[$WHITE\]╰ \$ "
 ```
 
 Create NTLM Hash from Mac CLI
