@@ -2176,6 +2176,14 @@ PATH=$PATH:/home/james/
 
 export PATH
 
+HISTCONTROL=ignoreboth
+HISTSIZE=9000
+HISTFILESIZE=9000
+HISTTIMEFORMAT='%Y%m%d_%H%M%S_%zUTC '
+
+shopt -s histappend
+shopt -s checkwinsize
+
 alias ls='ls -G'
 alias grep='grep --color=auto'
 alias la='ls -AlahG'
@@ -2184,6 +2192,9 @@ alias ll='ls -alF'
 alias l='ls -CF'
 alias lg='ls -AlahG |grep $1'
 alias netstati='lsof -P -i -n'
+alias lr='ls -lahs1Sc'
+alias gh='history|grep --color=auto'
+alias level='echo $HLVL'
 
 export PS1="\n\n\[\$(if [[ \$? == 0 ]]; then echo \"\[$GREEN\]✓\"; else echo \"\[$RED\]✕\"; fi)[\033[33m\]\D{%Y%m%d_%H%M%S}\[\033[m\] \[\033[36m\]\u@\h__`ipconfig getifaddr en0`__`ipconfig getifaddr en8`\[\033[m\]] \[\033[1;31m\]\n[\w]\[\033[m\] \n \$ 
 ```
@@ -2211,6 +2222,36 @@ Create NTLM Hash from Mac CLI
 	web shell
 ```
 https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/linux-index.md
+
+### traps
+
+File execution on clean exit
+```
+   tfile=/path/file
+   trap "python $tfile" EXIT 
+```
+
+Command execution on clean exit
+```
+   # Additional cmds run above trap
+   trap "some_cmd -switch" EXIT 
+```
+
+Command execution on CTRL-C
+```
+   trap "some_cmd -switch" SIGINT
+   # Additional cmds run below trap 
+```
+
+Function execution on clean exit
+```
+    function testexec()
+    {
+    	Insert code here
+    }
+    trap testexec EXIT
+```
+
 
 
 ## rpcclient
