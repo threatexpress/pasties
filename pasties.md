@@ -2161,12 +2161,62 @@ Remove new line following ":"
     awk '/:/ {printf("%s", $0); next}1' file.txt
 ```
 
+
+BASH Current line reference
+```
+    # Use !#:1 as second arg
+
+    cp /etc/selinux/strict/modules/active/modules/file1.pp !#:1.bak
+
+    ls /etc/selinux/strict/modules/active/modules/
+    file1.pp file1.pp.bak
+
+    echo test2 test3 test4 & echo !#:2
+    test2 test3 test4
+    test3
+```
+
+
+BASH repeat last arg from last cmd
+```
+    cp /tmp/123.abd /etc/selinux/strict/modules/active/modules/123.pp
+    File not found
+
+    cp /tmp/123.abc $!
+    cp /tmp/123.abc /etc/selinux/strict/modules/active/modules/123.pp
+```
+
+
+BASH Get last arg parent folder
+```
+    tar czvf 123xyz.tgz /etc/selinux/strict/modules/active/modules/124.pp
+    
+    tar: /etc/selinux/strict/modules/active/modules/123.pp: Cannot stat: No such file or directory
+    tar: Error exit delayed from previous errors
+
+ 
+    ls !$:h
+    ls /etc/selinux/strict/modules/active/modules/
+    123.pp
+```
+
+BASH Replace chars from last command
+```
+    tar czvf treat_module.tgz /etc/selinux/strict/modules/active/modules/treat_module.pp
+    tar: /etc/selinux/strict/modules/active/modules/treat_module.pp: Cannot stat: No such file or directory
+    tar: Error exit delayed from previous errors
+
+    !!:gs/treat/threat/
+```
+
+
 BASH .bashrc Function Example
 ```
     function start_sshtunnel() {
         ssh -A -t -p22 -L 8800:localhost:8800 james@123.001.123 -t ssh -L 8800:localhost:80 james@124.125.123
     }
 ```
+
 
 Quick BASH format .bash_profile (mod ipconfig > ifconfig for Linux)
 ```
