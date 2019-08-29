@@ -2159,6 +2159,8 @@ BASH loop example
 BASH Find and copy files
 ```
     find / -iname "passw" -print0 | xargs -I {} cp {} /new/path
+
+    find / -iname "passw" | xargs -I {} cp {} /new/path
 ```
 
 
