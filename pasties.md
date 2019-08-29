@@ -2156,6 +2156,12 @@ BASH loop example
 ```
 
 
+BASH Find and copy files
+```
+    find / -iname "passw" -print0 | xargs -I {} cp {} /new/path
+```
+
+
 Remove new line following ":"
 ```
     awk '/:/ {printf("%s", $0); next}1' file.txt
