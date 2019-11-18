@@ -1721,7 +1721,7 @@ Bypassing Dual Factor Authentication on OWA - http://www.blackhillsinfosec.com/?
 
 Source: https://github.com/dafthack/DomainPasswordSpray
 
-DomainPasswordSpray is a tool written in PowerShell to perform a password spray attack against users of a domain. By default it will automatically generate the userlist from the domain. BE VERY CAREFUL NOT TO LOCKOUT ACCOUNTS!
+DomainPasswordSpray is a tool written in PowerShell to perform a password spray attack against users of a domain. By default it will automatically generate the user list from the domain. BE VERY CAREFUL NOT TO LOCKOUT ACCOUNTS!
 
 #### Quick Start Guide
 Open a PowerShell terminal from the Windows command line with 'powershell.exe -exec bypass'.

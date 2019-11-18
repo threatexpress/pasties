@@ -95,6 +95,7 @@ alias chromium="chromium --user-data-dir ~/.chrome_user"
 
 CURDATE=`date '+%Y%m%d_%H%M%S.%N_%Z'`
 
+# note: comment or uncomment as required for os
 function my_ip {
 #    /sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'
     /sbin/ifconfig eth0 | grep 'inet ' | awk '{ print $2}'
