@@ -2577,6 +2577,19 @@ Using above example, connect to internal server 10.10.15.3
     ssh -i ~/.ssh/keyfile -p 9222 james@localhost
 ```
 
+Start proxy through local port 5443 to remote server
+```
+    ssh -D 5443 -C -f -N -p9222 james@remoteserver.com
+```
+
+Send web traffic over proxy (when using above command)
+```
+    Firefox Network Settings
+    Manual Proxy Config
+    SOCKS Host = localhost
+    Port = 5443
+    SOCKS v5
+```
 
 Start ssh using existing connections, send keepalive packets
 ```
