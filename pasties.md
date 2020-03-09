@@ -44,6 +44,8 @@
 - [Linux](#linux)
 	- [BASH](#bash)
 	- [Linux Persistence Ideas](#linux-persistence-ideas)
+    - [Linux PrivEsc](#linux-privesc)
+    - [Linux Situational Awareness](#linux-situational-awareness)
 	- [rpcclient](#rpcclient)
 	- [enum4linux](#enum4linux)
 	- [iptables](#iptables)
@@ -2394,6 +2396,114 @@ https://github.com/pentestmonkey/unix-privesc-check
 https://github.com/diego-treitos/linux-smart-enumeration
 https://github.com/TH3xACE/SUDO_KILLER
 
+
+## Linux Situational Awareness
+
+List open files
+```
+    lsof
+
+    # without kernel
+    lsof -b
+
+    # PIDs only
+    lsof -t
+
+    # by user
+    lsof -u username1,username2
+
+    # omit user
+    lsof -u ^username3
+```
+
+List network files
+```
+    lsof -i
+
+    # IPv4
+    lsof -i4
+
+    # IPv6
+    lsof -i6
+
+    # by protocol
+    lsof -i TCP
+    lsof -i UDP
+    lsof -i TCP:https
+
+    # by port
+    lsof -i TCP:8443
+    lsof -i TCP:10-1024
+
+    # list PIDs
+    lsof -t -i
+
+    # no port conversion
+    lsof -i -P
+
+    # no name conversion
+    lsof -i -n
+
+    # listening
+    lsof -nP -i TCP -s TCP:LISTEN
+
+    # connections
+    lsof -i | awk '{print $8}' | sort | uniq -c | grep 'TCP\|UDP'
+
+    # established
+    lsof -i -nP | grep ESTABLISHED | awk '{print $1, $9}' | sort -u
+
+    # active
+    lsof -nP -iTCP -sTCP:ESTABLISHED | grep HTTPS
+
+```
+
+List files by PID
+```
+    lsof -p 5432,8484
+
+    # include PPID
+    lsof -R
+    lsof -p 5432 -R
+```
+
+List PIDs that opened file
+```
+    lsof -t /path/to/file
+    lsof -t `which <cmd>`
+```
+
+List files by Process Name
+```
+    lsof -c firefox
+```
+
+List files in directory
+```
+    # open files
+    lsof +D DirectoryName
+
+    # include subdirectories
+    lsof +d DirectoryName
+```
+
+List NFS use
+```
+    lsof -N
+```
+
+List IPC
+```
+    lsof -U
+
+    # by PID
+    lsof -U -a -p 8484
+```
+
+Kill processes of specific user
+```
+    sudo kill -9 `lsof -t -u username1`
+```
 
 ## rpcclient
 
