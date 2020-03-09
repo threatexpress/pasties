@@ -2389,6 +2389,7 @@ Find password files (locate or find)
 ```
 
 Additional Refs:
+
 https://github.com/nongiach/sudo_inject
 https://github.com/sleventyeleven/linuxprivchecker
 https://github.com/rebootuser/LinEnum
