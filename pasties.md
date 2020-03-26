@@ -2810,32 +2810,32 @@ Using pssh (apt install pssh)
 
 Exec command using ssh key
 ```
-    parallell-ssh -i -x "-i /path/to/keyfile" -h hosts.txt <cmd>
+    parallel-ssh -i -x "-i /path/to/keyfile" -h hosts.txt <cmd>
 ```
 
 Exec command using password (prompts for pass)
 ```
-    parallell-ssh -i -l james -A -h hosts.txt <cmd>
+    parallel-ssh -i -l james -A -h hosts.txt <cmd>
 ```
 
 scp to targets
 ```
-    parallell-scp -l james -A -h hosts.txt /path/on/local /path/on/source
+    parallel-scp -l james -A -h hosts.txt /path/on/local /path/on/source
 ```
 
 rsync to targets
 ```
-    parallell-rsync -r -l james -A -h hosts.txt /path/on/local /path/on/remote
+    parallel-rsync -r -l james -A -h hosts.txt /path/on/local /path/on/remote
 ```
 
 copy single file from targets
 ```
-    parallell-slurp -l james -A -h hosts.txt -L /path/to/local/destination /path/to/remote/filename filename
+    parallel-slurp -l james -A -h hosts.txt -L /path/to/local/destination /path/to/remote/filename filename
 ```
 
 copy recursively from targets
 ```
-    parallell-slurp -r -l james -A -h hosts.txt -L /path/to/local/destination /path/to/remote/folder foldername
+    parallel-slurp -r -l james -A -h hosts.txt -L /path/to/local/destination /path/to/remote/folder foldername
 ```
 
 
