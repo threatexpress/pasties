@@ -53,6 +53,7 @@
 	- [NFS](#nfs)
 	- [Shells](#shells)
 	- [SSH Tunnels](#ssh-tunnels)
+	- [SSH multiple systems](#ssh-multiple-systems)
 	- [Impacket](#impacket)
 	- [Brute Force Techniques](#brute-force-techniques)
 	- [Wireless Quick Reference](#wireless-quick-reference)
@@ -2797,6 +2798,44 @@ Execute commands over ssh
 Write list of cmds to disk then execute via ssh
 ```
 cat commands.txt |ssh -p22 james@server 'cat >> /home/james/cmds; /bin/bash /home/james/cmds'
+```
+
+## SSH multiple systems
+
+Using pssh (apt install pssh)
+```
+    apt install pssh
+    add all target hosts to hosts.txt
+```
+
+Exec command using ssh key
+```
+    parallell-ssh -i -x "-i /path/to/keyfile" -h hosts.txt <cmd>
+```
+
+Exec command using password (prompts for pass)
+```
+    parallell-ssh -i -l james -A -h hosts.txt <cmd>
+```
+
+scp to targets
+```
+    parallell-scp -l james -A -h hosts.txt /path/on/local /path/on/source
+```
+
+rsync to targets
+```
+    parallell-rsync -r -l james -A -h hosts.txt /path/on/local /path/on/remote
+```
+
+copy single file from targets
+```
+    parallell-slurp -l james -A -h hosts.txt -L /path/to/local/destination /path/to/remote/filename filename
+```
+
+copy recursively from targets
+```
+    parallell-slurp -r -l james -A -h hosts.txt -L /path/to/local/destination /path/to/remote/folder foldername
 ```
 
 
