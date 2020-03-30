@@ -2800,6 +2800,10 @@ Write list of cmds to disk then execute via ssh
 cat commands.txt |ssh -p22 james@server 'cat >> /home/james/cmds; /bin/bash /home/james/cmds'
 ```
 
+### SSH Session Control
+[SSHPry - https://github.com/nopernik/SSHPry2.0](https://github.com/nopernik/SSHPry2.0)
+
+
 ## SSH multiple systems
 
 Using pssh (apt install pssh)
