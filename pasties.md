@@ -2570,27 +2570,27 @@ Obtain LAPS passwords for domain computers using the linux based ldapsearch tool
 	ms-MCS-AdmPwd - Only show me the ms-MCS-AdmPwd object (which by default includes the object name and DN so you will still know what host it belongs to)
 ```
 
-# System Lookup
+System Lookup
 ```
     ldapsearch -x -h ldap.domain.com -L -s sub -b ou=ITsystems,ou=computers,o=domain.com "(cn=itwks-001.it.domain.com)" <filteroptional>
 ```
 
-# User lookup by uid
+User lookup by uid
 ```
     ldapsearch -x -h ldap.domain.com -b o=domain.com -s sub uid=jdoe| egrep "uid:|uidnumber:|gidnumber:|cn:|gecos:|description:|loginshell:|homedirectory:"
 ```
 
-# User lookup by name
+User lookup by name
 ```
     ldapsearch -x -h ldap.domain.com -b o=domain.com -s sub '(&(sn=Tubberville)(givenname=James))'
 ```
 
-# Set Pass as self
+Set Pass as self
 ```
     ldappasswd -H ldaps://ldap.domain.com:6361 -D 'cn=John Doe (jdoe),ou=hr,ou=users,o=domain.com' -S -W -A  
 ```
 
-# Set Pass as Admin
+Set Pass as Admin
 ```
     ldappasswd -H ldaps://ldap.domain.com:6361 -x -D 'cn=admin,ou=hr,ou=users,o=domain.com' -S -W 'uid=jdoe,ou=hr users,o=domain.com '   
 ```
